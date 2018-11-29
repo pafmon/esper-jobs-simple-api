@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Esper-job list
+  description: >-
+    This is an OpenAPI Specification created by oas-wizard
+    (https://github.com/pafmon/oas-wizard)  
+  contact:
+    name: PabloFM
+    email: pablofm@us.es
+    url: 'http://www.isa.us.es'
+  license:
+    name: MIT
+    url: 'http: //opensource.org/licenses/MIT'
+paths:
+  /api/v1/esper-jobs:
+    post:
+      description: Creates a new esper-job
+      operationId: addEsper-job
+      responses:
+        '200':
+          description: esper-job response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/esper-job'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errorModel'
+      requestBody:
+        x-name: esper-job
+        content:
+          application/json:
+            schema:
+              type: object
+        description: Esper-job to be created
+        required: true
+components:
+  schemas:
+    errorModel:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    esper-job:
+      type: object
+      title: Esper input
+      required:
+        - startDate
+        - epl
+        - sequence
+      properties:
+        startDate:
+          type: string
+          title: The Startdate Schema
+        epl:
+          type: string
+          title: The Epl Schema
+        sequence:
+          type: string
+          title: The Sequence Schema
